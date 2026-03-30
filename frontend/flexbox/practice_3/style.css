@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+.features-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.feature-card {
+    padding: 20px;
+    border: 1px solid black;
+    background-color: burlywood;
+    min-width: 250px;
+    flex-grow: 1;
+}

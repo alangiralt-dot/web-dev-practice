@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="button1">Check Dimensions</button>
+    <p id="p0">&nbsp;</p>
+    <p id="p1">&nbsp;</p>
+    <p id="p2">&nbsp;</p>
+    <p id="p3">&nbsp;</p>
+    <div id="div0" class="features-container">
+        <div id="div1" class="feature-card">
+            <h3>Feature One</h3>
+            <p>Description of the first cool feature.</p>
+        </div>
+        <div id="div2" class="feature-card">
+            <h3>Feature Two</h3>
+            <p>Description of the second so much cool feature.</p>
+        </div>
+        <div id="div3" class="feature-card">
+            <h3>Feature Three</h3>
+            <p>Description of the third cool feature.</p>
+        </div>
+    </div>
+    <script>
+        let myTop = document.getElementById("div3").getBoundingClientRect().top;
+        window.addEventListener("resize", myFunction1);
+        document.getElementById("button1").addEventListener("click", myFunction2)
+        function myFunction1() {
+            let lastItemDOMRect = document.getElementById("div3").getBoundingClientRect();
+            if (myTop !== lastItemDOMRect.top) {
+                for (let i = 0; i <= 3; i++) {
+                    document.getElementById("p" + i).innerHTML = "div" + i + "'s width is " + Math.round(document.getElementById("div" + i).getBoundingClientRect().width * 100) / 100;
+                }
+                myTop = lastItemDOMRect.top;
+            }
+        }
+        function myFunction2() {
+            for (let i = 0; i <= 3; i++) {
+                document.getElementById("p" + i).innerHTML = "div" + i + "'s width is " + Math.round(document.getElementById("div" + i).getBoundingClientRect().width * 100) / 100;
+            }
+        }
+    </script>
+</body>
+</html>
