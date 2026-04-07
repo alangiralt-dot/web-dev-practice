@@ -1,0 +1,29 @@
+STEP-BY-STEP FLEXBOX WIDTH CALCULATION GUIDE
+
+1. FIND THE FLEX BASE SIZE
+   - Open Console and select the element ($0).
+   - Check: getComputedStyle($0).width
+   - If width is a fixed value (e.g., '200px'), that is your Base Size.
+   - If width is 'auto', the browser uses the item's "max-content" size (the width it needs to not wrap).
+
+2. APPLY CONSTRAINTS (CLAMPS)
+   - Check getComputedStyle($0).minWidth and .maxWidth.
+   - If Base Size < min-width: Set Base = min-width.
+   - If Base Size > max-width: Set Base = max-width.
+
+3. CALCULATE CONTAINER FREE SPACE
+   - Get parent width: $0.parentElement.clientWidth
+   - Calculate Sum of all Item Bases: Add up the Base Size of every item in the row.
+   - Calculate Sum of Gaps: (Number of items - 1) * gap value.
+   - Free Space = Parent Width - (Sum of Bases + Sum of Gaps).
+
+4. DISTRIBUTE SPACE (GROW OR SHRINK)
+   - IF FREE SPACE IS POSITIVE (> 0):
+     - Share = (Item flex-grow / Sum of all flex-grow) * Free Space.
+   - IF FREE SPACE IS NEGATIVE (< 0):
+     - Total Shrink Scaled = Σ(each item's flex-shrink * its Base Size).
+     - Share = ((Item flex-shrink * Item Base Size) / Total Shrink Scaled) * Free Space.
+
+5. CALCULATE FINAL PIXEL WIDTH
+   - Final Width = Base Size + Share.
+   - Verification: Run $0.getBoundingClientRect().width in Console to confirm.
