@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 // 1. Specify the absolute path to your exercise folder
-$fullPath = 'C:/xampp/htdocs/alan/tasca_s1_04/nivell_3/exercici_1/';
+$fullPath = 'C:/xampp/htdocs/alan/tasca_s1_03/nivell_1/exercici_3/';
 
 if (!is_dir($fullPath) || !is_writable($fullPath)) {
     exit("Error: The directory $fullPath is not ready for writing.");
@@ -24,6 +24,10 @@ if (!is_dir($outputDir) || !is_writable($outputDir)) {
 }
 
 $handle = fopen($outputFile, 'w');
+
+fwrite($handle, "--- DIRECTORY ---\n\n");
+fwrite($handle, "All these files share the following directory:\n\n");
+fwrite($handle, $fullPath . "\n\n");
 
 foreach ($filePaths as $filePath) {
     $fileName = basename($filePath);
