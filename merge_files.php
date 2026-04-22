@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 // 1. Specify the absolute path to your exercise folder
-$fullPath = 'C:/xampp/htdocs/alan/tasca_s1_03/nivell_1/exercici_3/';
+$fullPath = 'C:/xampp/htdocs/alan/tasca_s1_05/nivell_1/exercici_2/';
 
 if (!is_dir($fullPath) || !is_writable($fullPath)) {
     exit("Error: The directory $fullPath is not ready for writing.");
@@ -25,10 +25,30 @@ if (!is_dir($outputDir) || !is_writable($outputDir)) {
 
 $handle = fopen($outputFile, 'w');
 
-fwrite($handle, "--- DIRECTORY ---\n\n");
+// --- PROJECT ARCHITECTURE AUDIT ---
+$instructions = [
+    "Verify the UML (.puml) diagram consistency.",
+    "Audit Access Modifiers (public/private/protected) for encapsulation.",
+    "Audit Non-Access Modifiers (abstract/static/final/readonly) for behavioral logic.",
+    "Perform a deep-dive evaluation of all constructor-related logic (Promotion, Inheritance, and Validation).",
+    "Review type hinting and strict type enforcement.",
+    "Check the necessity of defensive copies (cloning).",
+    "Validate input constraints and exception handling.",
+    "Analyze the overall architectural logic.",
+    "Verify adherence to the Liskov Substitution Principle (LSP)."
+];
+
+fwrite($handle, "--- PROJECT ARCHITECTURE AUDIT ---\n\n");
+foreach ($instructions as $index => $instruction) {
+    fwrite($handle, ($index + 1) . ". " . $instruction . "\n");
+}
+
+// --- DIRECTORY SECTION ---
+fwrite($handle, "\n--- DIRECTORY ---\n\n");
 fwrite($handle, "All these files share the following directory:\n\n");
 fwrite($handle, $fullPath . "\n\n");
 
+// --- FILES SECTION ---
 foreach ($filePaths as $filePath) {
     $fileName = basename($filePath);
     fwrite($handle, "--- FILE: $fileName ---\n\n");
