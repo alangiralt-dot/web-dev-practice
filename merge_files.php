@@ -39,6 +39,7 @@ $instructions = [
 ];
 
 fwrite($handle, "--- PROJECT ARCHITECTURE AUDIT ---\n\n");
+fwrite($handle, "Please perform an exhaustive audit of the following points:\n\n");
 foreach ($instructions as $index => $instruction) {
     fwrite($handle, ($index + 1) . ". " . $instruction . "\n");
 }
