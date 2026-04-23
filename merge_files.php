@@ -27,15 +27,17 @@ $handle = fopen($outputFile, 'w');
 
 // --- PROJECT ARCHITECTURE AUDIT ---
 $instructions = [
-    "Verify the UML (.puml) diagram consistency.",
-    "Audit Access Modifiers (public/private/protected) for encapsulation.",
-    "Audit Non-Access Modifiers (abstract/static/final/readonly) for behavioral logic.",
-    "Perform a deep-dive evaluation of all constructor-related logic (Promotion, Inheritance, and Validation).",
-    "Review type hinting and strict type enforcement.",
-    "Check the necessity of defensive copies (cloning).",
-    "Validate input constraints and exception handling.",
-    "Analyze the overall architectural logic.",
-    "Verify adherence to the Liskov Substitution Principle (LSP)."
+    "UML_CONSISTENCY: Cross-reference the provided PHP implementation with the .puml diagram to ensure 100% structural alignment.",
+    "ENCAPSULATION_AUDIT: Validate that all properties and methods use the most restrictive Access Modifier (public/private/protected) possible.",
+    "BEHAVIORAL_LOGIC: Verify the correct application of Non-Access Modifiers (abstract, static, final, readonly) based on class intent.",
+    "CONSTRUCTOR_EVALUATION: Deep-dive into constructor logic, specifically auditing Property Promotion, inheritance chains, and state validation.",
+    "TYPE_SAFETY: Confirm 'declare(strict_types=1);' presence and verify comprehensive type hinting for all parameters and return values.",
+    "MEMORY_INTEGRITY: Evaluate the need for defensive copies (cloning) to prevent unintended external mutation of internal object state.",
+    "EXCEPTION_HANDLING: Validate that input constraints are enforced via appropriate Exception types and descriptive error messages.",
+    "ARCHITECTURAL_COHERENCE: Analyze the relationship between classes to ensure a logical and scalable project structure.",
+    "SOLID_LSP: Verify that child classes can replace parent classes or interfaces without breaking the program's correctness.",
+    "IDENTIFIER_AUDIT: Enforce descriptive, camelCase (methods/properties) and PascalCase (classes) naming. Flag non-descriptive names like '\$a' or '\$temp'.",
+    "DESIGN_PRINCIPLES: Audit the codebase for SRP (Single Responsibility), DRY (Logic Duplication), and KISS (Simplicity). Flag over-engineered or redundant code."
 ];
 
 fwrite($handle, "--- PROJECT ARCHITECTURE AUDIT ---\n\n");
