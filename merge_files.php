@@ -2,14 +2,14 @@
 declare(strict_types=1);
 
 // 1. Specify the absolute path to your exercise folder
-$fullPath = 'C:/xampp/htdocs/alan/tasca_s1_06/nivell_1/exercici_1/';
+$fullPath = 'C:/xampp/htdocs/alan/tasca_s1_08/';
 
 if (!is_dir($fullPath) || !is_writable($fullPath)) {
     exit("Error: The directory $fullPath is not ready for writing.");
 }
 
 // 2. Specify the files within that folder
-$filePaths = glob($fullPath . "*.{php,html,css,puml}", GLOB_BRACE);
+$filePaths = glob($fullPath . "{src/*/*/*,tests/*/*/*}.{php,html,css,puml}", GLOB_BRACE);
 
 // 3. Specify where to save the result
 $outputFile = 'C:/xampp/htdocs/alan/ai_info.txt';
@@ -42,10 +42,12 @@ foreach ($instructions as $index => $instruction) {
     fwrite($handle, ($index + 1) . ". " . $instruction . "\n");
 }
 
-// --- DIRECTORY SECTION ---
-fwrite($handle, "\n--- DIRECTORY ---\n\n");
-fwrite($handle, "All these files share the following directory:\n\n");
-fwrite($handle, $fullPath . "\n\n");
+// --- DIRECTORY TREE ---
+fwrite($handle, "\n--- DIRECTORY TREE ---\n\n");
+foreach ($filePaths as $filePath) {
+  fwrite($handle, $filePath . "\n");
+}
+fwrite($handle, "\n");
 
 // --- FILES SECTION ---
 foreach ($filePaths as $filePath) {
