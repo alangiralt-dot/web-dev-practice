@@ -9,7 +9,7 @@ if (!is_dir($fullPath) || !is_writable($fullPath)) {
 }
 
 // 2. Specify the files within that folder
-$filePaths = glob($fullPath . "{src/*/*/*,tests/*/*/*}.{php,html,css,puml}", GLOB_BRACE);
+$filePaths = glob($fullPath . "{src/*/*/*,tests/*/*/*,composer}.{php,html,css,puml,json}", GLOB_BRACE);
 
 // 3. Specify where to save the result
 $outputFile = 'C:/xampp/htdocs/alan/ai_info.txt';
