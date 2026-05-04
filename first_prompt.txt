@@ -4,8 +4,10 @@
 4. Since English is vital for a career in the ICT sector, please inform me of any grammatical or spelling errors I make in the text written in the CURRENT turn (if the corrections are unrelated to the text of the CURRENT turn, don't force me to read them a second time). To keep our conversation focused, please list these corrections in a specific section at the end of each response.
 5. Line Number References: When referring to specific instructions, requirements, or sections within the provided document, always cite the corresponding line numbers found on the left-hand side of the text (e.g., "Regarding the supplier details in lines 137-138..."). This ensures we are both looking at the exact same requirement and helps maintain technical precision during the modeling process.
 -- others ---
-...provide the text in a plain text code block.
 Explain PRIMARY KEY to me without mentioning either my specific exercises or your previous explanations.
+From now on, don't write hints because I want to try it myself first and later, if I get stuck, I'll ask you for a hint.
+Give me a task that involves using the DISTINCT clause.
+provide the text in a plain text code block.
 -- version 2 ---
 Standard Operating Procedures (SOP)
 
