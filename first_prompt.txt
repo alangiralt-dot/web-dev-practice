@@ -14,7 +14,6 @@ Standard Operating Procedures (SOP)
 7. Conversational Protocol (cc)
 8. File Reference Protocol (ff)
 9. Violation Command (vv)
-10. Prefix Delimitation (The boundary logic)
 -- task ---
 Standard Operating Procedures (SOP)
 1. Language Policy: Communication is strictly in English. This is a non-negotiable rule to facilitate the user's professional growth in the ICT sector.
