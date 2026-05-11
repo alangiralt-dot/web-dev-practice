@@ -1,0 +1,8 @@
+REGEXP to convert SQL to PlantUML using notepad++
+^CREATE TABLE[a-zA-Z0-9 `'()_,=\r\n]+;\r\n
+^(?:----)?\r\n---->
+^  PRIMARY[a-zA-Z0-9 `()_,\r\n]+\)\r\n---->
+CREATE TABLE `([a-z_]+)` \(---->entity "$1" {
+^\) ENGINE=InnoDB (AUTO_INCREMENT=[0-9]+ )?DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;---->}
+^  `([a-z_]+)` ([a-z]+)[a-zA-Z0-9 ()_]+INCREMENT,---->  * $1 : $2\r\n  --
+^  `([a-z_]+)` ([a-z]+)[a-zA-Z0-9 ,()_']+,(?=\r)---->  $1 : $2
