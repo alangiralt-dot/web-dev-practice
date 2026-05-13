@@ -1,0 +1,35 @@
+Start --> 1
+1 Està plovent a fora?
+1 -- si --> Agafar el paraigua --> end1
+1 -- no --> Agafar les ulleres de sol --> end1
+end1 --> 2 Estàs a punt per sortir?
+2 -- si --> Obrir la porta del pis --> end2
+2 -- no --> end2
+end2 --> End
+
+Start --> 1
+1 Que encara hi ha monedes a terra?
+1 -- si --> Recull una moneda --> 1
+1 -- no --> Desa les monedes al moneder --> End
+
+Start --> $n=0 --> 1 $n<10
+1 -- si --> Fes una flexió --> $n=$n+1 --> 1
+1 -- no --> Beu un glopet d'aigua --> End
+
+calcularArea($a,$b,$c){
+  Start --> 1 $a, $b i $c són nombres positius?
+  1 -- si --> 2 $a, $b i $c poden formar un triangle?
+  2 -- si --> Calcula l'àrea del triangle amb la fórmula d'Heró i retorna-la. --> End
+  2 -- no --> retorna 0. --> End
+  1 -- no --> retorna 0. --> End
+}
+{
+  Start --> Demana tres nombres enters a l'usuari i guarda'ls en $a, $b i $c. --> $area=calcularArea($a,$b,$c)
+  --> 1 Que l'àrea és major que zero?
+  1 -- si --> Dibuixa el triangle que $a, $b i $c formen amb línies gruixudes i negres, ratlla l'àrea interior
+  del triangle amb línies vermelles i fines, i sobre el incentre escriu el valor de $area en centímetres quadrats
+  i amb lletra petita, vermella i en negreta. --> 2 Que el text vermell hi cap dins del triangle?
+  2 -- si --> End
+  2 -- no --> Borrar el text vermell i reescriu-lo sota del triangle deixant un marge proporcionat. --> End
+  1 -- no --> Explica a l'usuari perquè no pots dibuixar el triangle. --> End
+}

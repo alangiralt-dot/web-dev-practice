@@ -1,0 +1,26 @@
+parsePrompt($raw_text) {
+  Start --> 1 Hi ha coincidències amb /(?:(ss) (p|e)|(ii)|(cc)|(ff)|(vv) ([0-9]+)|(rr)) ([^¨]*)/g?
+  1 -- si --> 2 Que has utilitzat totes les coincidències?
+  1 -- no --> Retorna $prompt = [] --> End
+  
+  2 -- si --> Retorna l'array associatiu $prompt. --> End
+  2 -- no --> 3 group 1 no és null i group 2 no és null i group 9 no és null?
+  
+  3 -- si --> $prompt['ss']['status'] = Grup 2 --> $prompt['ss']['snippet'] = Grup 9 --> 2
+  3 -- no --> 4 group 3 no és null i group 9 no és null?
+  
+  4 -- si --> $prompt['ii']['input'] = Grup 9 --> 2
+  4 -- no --> 5 group 4 no és null i group 9 no és null?
+  
+  5 -- si --> $prompt['cc']['body'] = Grup 9 --> 2
+  5 -- no --> 6 group 5 no és null i group 9 no és null?
+  
+  6 -- si --> $prompt['ff']['file_name'] = Grup 9 --> 2
+  6 -- no --> 7 group 6 no és null i group 7 no és null i group 9 no és null?
+  
+  7 -- si --> $prompt['vv']['rule_number'] = Grup 7 --> $prompt['vv']['answer_id'] = Grup 9 --> 2
+  7 -- no --> 8 group 8 no és null i group 9 no és null?
+  
+  8 -- si --> $prompt['rr']['last_stable_answer_id'] = Grup 9 --> 2
+  8 -- no --> Retorna $prompt = [] --> End
+}
