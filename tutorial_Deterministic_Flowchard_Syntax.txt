@@ -1,0 +1,72 @@
+DOCUMENTATION OF THE DFS SYNTAX SPECIFICATION
+(Deterministic Flowchart Syntax)
+
+1. NODE CLASSIFICATION AND BEHAVIOR
+
+The flowchart consists of five conceptual node types. The AI interpreter must process them by strictly adhering to these rules:
+
+A. Start Node (START)
+- Representation: The exact word 'START'.
+- Function: It is the mandatory graphical entry point of the flow.
+- Behavior: It does not execute any action or make any decision. It only serves as the origin for the first transition arrow ('-->').
+
+B. Final Node (END)
+- Representation: The exact word 'END'.
+- Function: To stop the execution of the flow within the current scope.
+- Behavior: It is the terminal destination point. When the flow reaches it, the AI interpreter must immediately freeze the state of the system and terminate all subsequent processing.
+
+C. Decision Nodes (Conditional Branches)
+- Representation: They always begin with an isolated integer enclosed in parentheses that acts as a unique identifier, followed by a natural language question (Example: '(1) Are there matches?').
+- Function: To evaluate a boolean logical condition.
+- Behavior: These are the only nodes that allow the path to branch. The interpreter must analyze the condition and strictly follow the output arrow that matches the result ('-- YES -->' or '-- NO -->'). Any transition pointing back to a node identifier inside parentheses (Example: '--> (2)') forces an immediate jump to that specific Decision Node.
+
+D. Branch Union Nodes (Connectors)
+- Representation: A textual keyword consisting of the prefix 'end' followed by the number of the originating decision node enclosed in parentheses (Example: 'end(1)' for node '(1)').
+- Function: To merge the divergent paths of a decision node back into a single linear thread.
+- Behavior: If a branch has not previously terminated in an 'END' node or through a jump, it converges here to continue sequential execution.
+
+E. Action Nodes (Linear Operations)
+- Representation: Descriptive blocks of text or variable assignments that do not have any associated identifying number or parentheses.
+- Function: To execute sequential commands (saving data, mutating variables, calling functions).
+- Behavior: They are read and executed linearly. They cannot make decisions or open alternative paths. Once the action is completed, the next arrow is followed immediately.
+
+
+2. TRANSITION OPERATORS AND LINKS
+
+This section describes how nodes are connected and how the execution flow moves from one point to another unambiguously:
+
+A. The Linear Transition Operator (-->)
+- Representation: The exact characters '-->'.
+- Function: Indicates a sequential and mandatory advance to the next element.
+- Behavior: The AI interpreter must immediately move to the instruction, action, or node located to the right of the operator as soon as the current command or evaluation finishes.
+
+B. Conditional Branching Arrows (-- YES --> / -- NO -->)
+- Representation: The exact blocks '(<node identifier>) -- YES -->' (for true outcomes) and '<node identifier> -- NO -->' (for false outcomes).
+- Function: To connect the output of a Decision Node with its derived logical paths.
+- Behavior: They are used exclusively right after a Decision Node. The interpreter evaluates the node's question and strictly follows the path that matches the answer.
+
+
+3. SYNTACTIC CONVENTIONS RULE (PHP COMPATIBILITY)
+
+For all code structures, declarations, and data manipulations performed within the flowchart, the following simplified rule applies:
+
+A. Adoption of PHP Standards
+- Principle: The DFS syntax directly adopts all standard conventions of the PHP programming language for the definition and use of code elements.
+- Scope of application: This includes, directly and without the need for additional definition, function declarations, the use of the '$' symbol for variables, the structure of input parameters, the nomenclature and access to associative arrays (Example: $prompt['ss']['status']), and comment blocks ('/*' and '*/').
+- Behavior: The AI interpreter must apply the same parsing and logic rules that a PHP execution engine would use to interpret these text fragments.
+
+4. EXECUTION PROTOCOL FOR AI INTERPRETERS (LLM RUNTIME DIRECTIVES)
+
+This section mandates how an Artificial Intelligence or Large Language Model must process this syntax to minimize execution divergence and token hallucination:
+
+A. Strict Deterministic Execution State
+- Principle: The AI interpreter must process every flowchart script as an immutable state machine, treating natural language descriptions inside nodes as discrete code parameters rather than conversational context.
+- Behavior: The model must suppress its conversational training layer and follow the transition operators synchronously.
+
+B. Mandatory Resolution of Alternative Branches
+- Principle: Every decision path must be structurally closed. The AI interpreter is strictly prohibited from generating spontaneous text, default filler, or trailing conversational output when a condition evaluates to false or hits an unassigned route.
+- Behavior: If an explicit Assertion Node is present (Example: '[ASSERT: Force silent buffer execution]'), the model must instantly map its attention parameters to that specific constraint, enforce a hard stop on the active text buffer generation, and transition downstream without rendering text artifacts.
+
+C. Handling Non-Explicit Empty Branches
+- Principle: Leaving an alternative branching arrow open without a terminal 'END' or a defensive assertion directive constitutes a syntax violation.
+- Behavior: To safeguard structural reliability, if the model encounters an empty branch, it must systematically execute an implicit memory wipe on any lingering text tokens, enforcing absolute silence until a valid linear connector or terminal node is explicitly reached.
